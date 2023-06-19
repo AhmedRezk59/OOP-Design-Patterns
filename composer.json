@@ -1,0 +1,20 @@
+{
+    "name": "ahmed_rizk/oop_design_patterns",
+    "type": "project",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ahmed Rizk",
+            "email": "rezk59315@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php" : "^8.1"
+    }
+}
