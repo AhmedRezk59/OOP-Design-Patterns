@@ -2,28 +2,27 @@
 
 require __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
-use Src\Patterns\Observer\Observers\AlertSystemObserver;
-use Src\Patterns\Observer\Observers\LoggerObserver;
-use Src\Patterns\Observer\Observers\UserInterfaceObserver;
-use Src\Patterns\Observer\WeatherStation;
+use Src\Patterns\Decorator\ThickCurstPizza;
+use Src\Patterns\Decorator\ThinCurstPizza;
+use Src\Patterns\Decorator\Toppings\Cheese;
+use Src\Patterns\Decorator\Toppings\Olive;
+use Src\Patterns\Decorator\Toppings\Peppers;
 
-$weatherStation = new WeatherStation();
+$pizza = new ThickCurstPizza();
+$pizza = new Peppers($pizza);
+$pizza = new Olive($pizza);
+$pizza = new Olive($pizza);
+$pizza = new Cheese($pizza);
 
-$weatherStation->addObserver(new LoggerObserver());
-$weatherStation->addObserver(new AlertSystemObserver());
-$weatherStation->addObserver(new UserInterfaceObserver());
+echo $pizza->getDescription() . '<br>';
+echo $pizza->cost() . '$<br>';
 
-$weatherStation->setTemprature(12);
-echo "-----------------------------------------------------<br>";
-$weatherStation->removeObserver(new LoggerObserver());
-$weatherStation->setPressure(34);
+echo '------------------------------------------------------------------<br>';
 
-echo "-----------------------------------------------------<br>";
-$weatherStation->removeObserver(new AlertSystemObserver());
-$weatherStation->setWindSpeed(50);
+$pizza2 = new ThinCurstPizza();
 
-echo "-----------------------------------------------------<br>";
-$weatherStation2 = new WeatherStation();
-$weatherStation2->setTemprature(12);
-$weatherStation2->addObserver(new AlertSystemObserver());
-$weatherStation2->setWindSpeed(12);
+$pizza2 = new Peppers($pizza2);
+$pizza2 = new Olive($pizza2);
+$pizza2 = new Cheese($pizza2);
+echo $pizza2->getDescription() . '<br>';
+echo $pizza2->cost() . '$<br>';
