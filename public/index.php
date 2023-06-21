@@ -2,16 +2,28 @@
 
 require __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
-use Src\Patterns\Adapter\DroneAdapter;
-use Src\Patterns\Adapter\MallardDuck;
-use Src\Patterns\Adapter\SuperDrone;
+use Src\Patterns\Observer\Observers\AlertSystemObserver;
+use Src\Patterns\Observer\Observers\LoggerObserver;
+use Src\Patterns\Observer\Observers\UserInterfaceObserver;
+use Src\Patterns\Observer\WeatherStation;
 
-$duck = new MallardDuck();
-$duck->quack();
-$duck->fly();
+$weatherStation = new WeatherStation();
 
-echo '---------------------------------------------------<br>';
+$weatherStation->addObserver(new LoggerObserver());
+$weatherStation->addObserver(new AlertSystemObserver());
+$weatherStation->addObserver(new UserInterfaceObserver());
 
-$duck = new DroneAdapter(new SuperDrone());
-$duck->quack();
-$duck->fly();
+$weatherStation->setTemprature(12);
+echo "-----------------------------------------------------<br>";
+$weatherStation->removeObserver(new LoggerObserver());
+$weatherStation->setPressure(34);
+
+echo "-----------------------------------------------------<br>";
+$weatherStation->removeObserver(new AlertSystemObserver());
+$weatherStation->setWindSpeed(50);
+
+echo "-----------------------------------------------------<br>";
+$weatherStation2 = new WeatherStation();
+$weatherStation2->setTemprature(12);
+$weatherStation2->addObserver(new AlertSystemObserver());
+$weatherStation2->setWindSpeed(12);

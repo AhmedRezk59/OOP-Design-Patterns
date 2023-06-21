@@ -6,6 +6,7 @@ In this repository , I learn and apply on design patterns.
 
 - Strategy pattern
 - Adapter pattern
+- Observer pattern
 
 ### Installation
 
