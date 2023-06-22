@@ -2,6 +2,7 @@
 
 namespace Src\Patterns\Observer;
 
+use InvalidArgumentException;
 use Src\Patterns\Observer\Interfaces\ObserverInterface;
 use Src\Patterns\Observer\Interfaces\SubjectInterface;
 
@@ -9,28 +10,28 @@ class Observable implements SubjectInterface
 {
     private array $observers = [];
     
-    public function addObserver(ObserverInterface $observer)
+    public function addObserver(string $observer)
     {
+        $this->checkObserver($observer);
         array_push($this->observers , $observer);
     }
-
-    public function removeObserver(ObserverInterface|string $observer)
+    
+    public function removeObserver(string $observer)
     {
-        $this->observers = array_filter($this->observers , function (ObserverInterface $o) use($observer) {
-            return ! $o instanceof $observer; 
-        });
+        $this->checkObserver($observer);
+        unset($this->observers[array_search($observer , $this->observers)]);
     }
 
     public function notifyObservers()
     {
         foreach ($this->observers as $observer) {
-            $observer->update();
+            (new $observer($this))->update();
         }
     }
-    public function getObservers()
+
+    private function checkObserver(string $observer)
     {
-        echo '<pre>';
-        var_dump($this->observers);
-        echo '</pre>';
+        if ( ! in_array( ObserverInterface::class , class_implements($observer))) 
+            throw new InvalidArgumentException("$observer does not implement Observer Interface");
     }
 }

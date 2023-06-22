@@ -9,9 +9,9 @@ require __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . 'vendor' . 
 
 $weatherStation = new WeatherStation();
 
-$weatherStation->addObserver(new LoggerObserver($weatherStation));
-$weatherStation->addObserver(new AlertSystemObserver($weatherStation));
-$weatherStation->addObserver(new UserInterfaceObserver($weatherStation));
+$weatherStation->addObserver( LoggerObserver::class);
+$weatherStation->addObserver( AlertSystemObserver::class);
+$weatherStation->addObserver( UserInterfaceObserver::class);
 $weatherStation->setTemprature(12);
 
 echo '********************************************************<br>';

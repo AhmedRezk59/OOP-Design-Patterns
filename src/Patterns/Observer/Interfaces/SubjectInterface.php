@@ -2,11 +2,10 @@
 
 namespace Src\Patterns\Observer\Interfaces;
 
-use Src\Patterns\Observer\Interfaces\ObserverInterface;
 
 interface SubjectInterface
 {
-    public function addObserver(ObserverInterface $observer);
-    public function removeObserver(ObserverInterface|string $observer);
+    public function addObserver(string $observer);
+    public function removeObserver(string $observer);
     public function notifyObservers();
 }
