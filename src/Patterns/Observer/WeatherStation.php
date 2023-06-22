@@ -26,7 +26,7 @@ class WeatherStation extends Observable
     public function setPressure($pressure)
     {
         $this->pressure = $pressure;
-        $this->notifyObservers($this->getData());
+        $this->notifyObservers();
         return $this;
     }
 
@@ -46,7 +46,7 @@ class WeatherStation extends Observable
     public function setWindSpeed($windSpeed)
     {
         $this->windSpeed = $windSpeed;
-        $this->notifyObservers($this->getData());
+        $this->notifyObservers();
         return $this;
     }
 
@@ -66,12 +66,8 @@ class WeatherStation extends Observable
     public function setTemprature($temprature)
     {
         $this->temprature = $temprature;
-        $this->notifyObservers($this->getData());
+        $this->notifyObservers();
         return $this;
     }
 
-    private function getData()
-    {
-        return ['temprature' => $this->getTemprature() , 'windSpeed' => $this->getWindSpeed() , 'pressure' => $this->getPressure()];
-    }
 }

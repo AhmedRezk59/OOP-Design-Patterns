@@ -3,23 +3,25 @@
 namespace Src\Patterns\Observer\Observers;
 
 use Src\Patterns\Observer\Interfaces\ObserverInterface;
+use Src\Patterns\Observer\Observable;
 
 class LoggerObserver implements ObserverInterface
 {
-    private mixed $value;
-    
-    public function update(mixed $value)
+    public function __construct(private ?Observable $observable = null)
     {
-        $this->value = $value;
-        $this->log();
+    }
+
+    public function update()
+    {
+        if($this->observable !== null) $this->log();
     }
 
     private function log()
     {
-        $str = 'Logging';
-        $str .= " temprature = " . $this->value['temprature'];
-        $str .= " pressure = " . $this->value['pressure'];
-        $str .= " wind Speed = " . $this->value['windSpeed'];
+        $str = 'logging';
+        $str .= " temprature = " . $this->observable->getTemprature();
+        $str .= " pressure = " . $this->observable->getPressure();
+        $str .= " wind Speed = " . $this->observable->getWindSpeed();
         echo $str . '<br>';
     }
 }

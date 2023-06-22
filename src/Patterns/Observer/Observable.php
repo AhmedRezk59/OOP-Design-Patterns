@@ -11,20 +11,26 @@ class Observable implements SubjectInterface
     
     public function addObserver(ObserverInterface $observer)
     {
-        array_push($this->observers , $observer::class);
+        array_push($this->observers , $observer);
     }
 
-    public function removeObserver(ObserverInterface $observer)
+    public function removeObserver(ObserverInterface|string $observer)
     {
-        if (($key = array_search($observer::class, $this->observers , true)) !== FALSE) {
-            unset($this->observers[$key]);
-        }
+        $this->observers = array_filter($this->observers , function (ObserverInterface $o) use($observer) {
+            return ! $o instanceof $observer; 
+        });
     }
 
-    public function notifyObservers(mixed $value)
+    public function notifyObservers()
     {
         foreach ($this->observers as $observer) {
-            (new $observer())->update($value);
+            $observer->update();
         }
+    }
+    public function getObservers()
+    {
+        echo '<pre>';
+        var_dump($this->observers);
+        echo '</pre>';
     }
 }

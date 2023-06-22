@@ -3,23 +3,25 @@
 namespace Src\Patterns\Observer\Observers;
 
 use Src\Patterns\Observer\Interfaces\ObserverInterface;
+use Src\Patterns\Observer\Observable;
 
 class AlertSystemObserver implements ObserverInterface
 {
-    private mixed $value;
-    
-    public function update(mixed $value)
+    public function __construct(private ?Observable $observable = null)
     {
-        $this->value = $value;
-        $this->alert();
+    }
+
+    public function update()
+    {
+        if ($this->observable !== null) $this->alert();
     }
 
     private function alert()
     {
         $str = 'Alerting';
-        $str .= " temprature = " . $this->value['temprature'];
-        $str .= " pressure = " . $this->value['pressure'];
-        $str .= " wind Speed = " . $this->value['windSpeed'];
+        $str .= " temprature = " . $this->observable->getTemprature();
+        $str .= " pressure = " . $this->observable->getPressure();
+        $str .= " wind Speed = " . $this->observable->getWindSpeed();
         echo $str . '<br>';
     }
 }
