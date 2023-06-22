@@ -13,6 +13,7 @@ $pizza = new Peppers($pizza);
 $pizza = new Olive($pizza);
 $pizza = new Olive($pizza);
 $pizza = new Cheese($pizza);
+$pizza = new Peppers($pizza);
 
 echo $pizza->getDescription() . '<br>';
 echo $pizza->cost() . '$<br>';
@@ -24,5 +25,6 @@ $pizza2 = new ThinCurstPizza();
 $pizza2 = new Peppers($pizza2);
 $pizza2 = new Olive($pizza2);
 $pizza2 = new Cheese($pizza2);
+$pizza2 = new Olive($pizza2);
 echo $pizza2->getDescription() . '<br>';
 echo $pizza2->cost() . '$<br>';

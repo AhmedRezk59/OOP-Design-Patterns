@@ -7,18 +7,6 @@ use Src\Patterns\Decorator\Abstracts\ToppingDecorator;
 
 class Olive extends ToppingDecorator
 {
-    private Pizza $pizza;
-
-    public function __construct(Pizza $pizza)
-    {
-        $this->pizza = $pizza;
-    }
-
-    public function setDescription(): void
-    {
-        
-    }
-
     public function getDescription(): string
     {
         return $this->pizza->getDescription() . ', Olive';
