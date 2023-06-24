@@ -1,23 +1,21 @@
 <?php
 
-use Src\Patterns\Observer\Observers\AlertSystemObserver;
-use Src\Patterns\Observer\Observers\LoggerObserver;
-use Src\Patterns\Observer\Observers\UserInterfaceObserver;
-use Src\Patterns\Observer\WeatherStation;
+use Src\Patterns\SimpleFactory\Calenders\CenteralCalender;
+use Src\Patterns\SimpleFactory\Calenders\EasternCalender;
+use Src\Patterns\SimpleFactory\Calenders\MountainCalender;
+use Src\Patterns\SimpleFactory\Calenders\PacificCalender;
 
 require __DIR__ . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
-$weatherStation = new WeatherStation();
-
-$weatherStation->addObserver( LoggerObserver::class);
-$weatherStation->addObserver( AlertSystemObserver::class);
-$weatherStation->addObserver( UserInterfaceObserver::class);
-$weatherStation->setTemprature(12);
-
-echo '********************************************************<br>';
-$weatherStation->removeObserver(AlertSystemObserver::class);
-$weatherStation->setWindSpeed(25);
-
-echo '********************************************************<br>';
-$weatherStation->removeObserver(LoggerObserver::class);
-$weatherStation->setPressure(54);
+$calender = new EasternCalender();
+$calender->print();
+echo "**************************************************<br>";
+$calender = new CenteralCalender();
+$calender->print();
+echo "**************************************************<br>";
+$calender = new MountainCalender();
+$calender->print();
+echo "**************************************************<br>";
+$calender = new PacificCalender();
+$calender->print();
+echo "**************************************************<br>";
