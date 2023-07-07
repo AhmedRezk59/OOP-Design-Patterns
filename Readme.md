@@ -9,6 +9,7 @@ In this repository , I learn and apply on design patterns.
 - Observer pattern
 - Decorator pattern
 - Simple Factory Pattern
+- Builder pattern
 ### Installation
 
 - You must have composer and php:8.1 installed
