@@ -4,12 +4,14 @@ In this repository , I learn and apply on design patterns.
 
 ### The design patterns in this repo
 
-- Strategy pattern
-- Adapter pattern
-- Observer pattern
-- Decorator pattern
+- Strategy Pattern
+- Adapter Pattern
+- Observer Pattern
+- Decorator Pattern
 - Simple Factory Pattern
-- Builder pattern
+- Builder Pattern
+- Singleton Pattern
+
 ### Installation
 
 - You must have composer and php:8.1 installed
