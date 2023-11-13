@@ -6,7 +6,7 @@ use InvalidArgumentException;
 use Src\Patterns\Observer\Interfaces\ObserverInterface;
 use Src\Patterns\Observer\Interfaces\SubjectInterface;
 
-class Observable implements SubjectInterface
+trait Observable
 {
     private array $observers = [];
     

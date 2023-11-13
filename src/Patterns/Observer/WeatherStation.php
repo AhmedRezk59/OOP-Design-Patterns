@@ -2,10 +2,13 @@
 
 namespace Src\Patterns\Observer;
 
+use Src\Patterns\Observer\Interfaces\ObserverInterface;
+use Src\Patterns\Observer\Interfaces\SubjectInterface;
 use Src\Patterns\Observer\Observable;
 
-class WeatherStation extends Observable
+class WeatherStation implements SubjectInterface
 {
+    use Observable;
     private float $pressure = 0;
     private float $windSpeed = 0;
     private float $temprature = 0;
